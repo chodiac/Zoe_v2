@@ -1,0 +1,35 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>viewer test</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>body{margin:0;background:radial-gradient(120% 90% at 50% 35%,#f7f2ea,#e6ddcf);font:13px sans-serif}#s{position:relative;width:100vw;height:100vh}canvas{display:block;width:100%;height:100%}#b{position:fixed;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}</style></head>
+<body><div id="s"></div><div id="b"></div>
+<script type="module">
+import { createViewer } from '../js/atelier/viewer.js';
+import { ENTRIES, COLOR_ORDER } from '../js/data.js';
+const v = createViewer(document.getElementById('s'));
+const q = new URLSearchParams(location.search);
+await v.setEntry(q.get('e')||'look-03', q.get('c'));
+if (q.get('v')) v.view(q.get('v'));
+if (q.get('d')) v.setDisplay('dress');
+const b=document.getElementById('b');
+const btn=(t,f)=>{const x=document.createElement('button');x.textContent=t;x.onclick=f;b.append(x)};
+ENTRIES.forEach(e=>btn(e.label,()=>v.setEntry(e.id)));
+COLOR_ORDER.forEach(c=>btn(c,()=>v.setColour(c)));
+['front','back','detail','reset'].forEach(n=>btn(n,()=>v.view(n)));
+btn('dress',()=>v.setDisplay(v.state.display==='dress'?'mannequin':'dress'));
+console.log('clearance', JSON.stringify(v.clearance()));
+// Export the reference mannequin (+ optional prototype dress) as GLB for Blender / CLO / Marvelous Designer
+btn('export mannequin.glb', () => exportGLB(false));
+btn('export prototype.glb', () => exportGLB(true));
+async function exportGLB(withDress) {
+  const { GLTFExporter } = await import('three/addons/exporters/GLTFExporter.js');
+  const scene = v.scene; const fig = scene.children.find(o => o.isGroup && o.children.some(c => c.name === 'mannequin'));
+  const target = withDress ? fig : fig.children.find(c => c.name === 'mannequin');
+  const rot = fig.rotation.y; fig.rotation.y = 0; fig.updateMatrixWorld(true);
+  new GLTFExporter().parse(target, buf => {
+    fig.rotation.y = rot;
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([buf], { type: 'model/gltf-binary' }));
+    a.download = withDress ? 'zba-korset-mini-prototype.glb' : 'zba-reference-mannequin.glb'; a.click();
+  }, e => console.error(e), { binary: true });
+}
+</script></body></html>

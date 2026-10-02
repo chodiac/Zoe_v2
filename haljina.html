@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Haljina — ZOE BY AZ</title>
+<meta name="description" content="Korset mini haljina u čipki — fotografije, 3D prikaz, boje i upit. ZOE BY AZ, Kalenićeva 6, Beograd.">
+<meta name="theme-color" content="#F5F0E7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script>(function(){var q=location.search,d=document.documentElement;if(/[?&]motion/.test(q))d.classList.add('force-motion');if(!matchMedia('(prefers-reduced-motion: reduce)').matches||/[?&]motion/.test(q))d.classList.add('js-motion');})();</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Preskoči na sadržaj</a>
+
+<header class="hdr" data-hdr>
+  <nav class="hdr__nav hdr__nav--l" aria-label="Glavna navigacija">
+    <a href="kolekcija.html">Kolekcija</a>
+    <a href="index.html#atelje">3D atelje</a>
+    <a href="index.html#lookbook">Lookbook</a>
+  </nav>
+  <a class="hdr__mark" href="index.html" aria-label="ZOE BY AZ — početna">ZOE BY AZ</a>
+  <nav class="hdr__nav hdr__nav--r" aria-label="Sekundarna navigacija">
+    <a href="index.html#o-brendu">O brendu</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a class="hdr__inq" href="#upit" data-inquire>Upit <b aria-hidden="true"><span data-inq-label>03</span></b></a>
+    <button class="hdr__menu hdr__btn" aria-expanded="false" aria-controls="menu">Meni</button>
+  </nav>
+</header>
+<div class="menu" id="menu" inert>
+  <div class="menu__top"><span class="hdr__mark">ZOE BY AZ</span><button class="link" data-menu-close>Zatvori <i>×</i></button></div>
+  <ul class="menu__list">
+    <li><a href="kolekcija.html">Kolekcija <small>01</small></a></li>
+    <li><a href="index.html#atelje">3D atelje <small>02</small></a></li>
+    <li><a href="index.html#lookbook">Lookbook <small>03</small></a></li>
+    <li><a href="index.html#o-brendu">O brendu <small>04</small></a></li>
+    <li><a href="index.html#kontakt">Kontakt <small>05</small></a></li>
+  </ul>
+  <div class="menu__foot"><span>Kalenićeva 6, Beograd</span><a href="https://www.instagram.com/zoebyaz/" target="_blank" rel="noopener">Instagram @zoebyaz ↗</a></div>
+</div>
+
+<main id="main" data-header="light">
+  <div class="pdp">
+    <nav class="crumbs" aria-label="Putanja"><a href="index.html">Početna</a><span>/</span><a href="kolekcija.html">Kolekcija</a><span>/</span><span data-crumb aria-current="page"></span></nav>
+
+    <div class="pdp__media">
+      <div class="pdp__tabs" role="tablist" aria-label="Prikaz haljine">
+        <button role="tab" id="tab-photo" aria-controls="panel-photo" aria-selected="true">Fotografije</button>
+        <button role="tab" id="tab-3d" aria-controls="panel-3d" aria-selected="false" tabindex="-1">3D prikaz</button>
+      </div>
+      <div id="panel-photo" role="tabpanel" aria-labelledby="tab-photo">
+        <div class="gallery">
+          <div class="gallery__thumbs" data-thumbs aria-label="Fotografije"></div>
+          <figure class="gallery__main" data-main>
+            <img alt="" data-main-img>
+            <figcaption class="cap" data-main-cap></figcaption>
+            <div class="gallery__nav"><button data-prev aria-label="Prethodna fotografija">←</button><button data-next aria-label="Sledeća fotografija">→</button></div>
+          </figure>
+        </div>
+      </div>
+      <div id="panel-3d" class="pdp__3d" role="tabpanel" aria-labelledby="tab-3d" hidden>
+        <div data-stage></div>
+      </div>
+    </div>
+
+    <aside class="pdp__info" aria-label="Informacije o haljini">
+      <div style="display:grid;gap:12px">
+        <span class="cap" data-label></span>
+        <h1 data-name></h1>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">Radni naziv</span><span class="tag">Cena na upit</span></div>
+      </div>
+      <p class="lede" data-caption></p>
+
+      <div data-panel class="pdp__panel"></div>
+      <p class="pdp__note" data-photo-note hidden></p>
+
+      <ul class="spec">
+        <li><span>Boja</span><span data-spec-color></span></li>
+        <li><span>Cena</span><span>Na upit</span></li>
+        <li><span>Veličina</span><span>Proverite u butiku ili upitom</span></li>
+        <li><span>Dostupnost</span><span>Na upit</span></li>
+      </ul>
+
+      <div style="display:grid;gap:8px">
+        <button class="btn btn--ink btn--block" data-inquire>Pošalji upit <span class="arr">→</span></button>
+        <a class="btn btn--block" href="https://ig.me/m/zoebyaz" target="_blank" rel="noopener">Poruka na Instagramu <span class="arr">↗</span></a>
+      </div>
+
+      <div>
+        <details class="acc" open>
+          <summary>Šta se vidi na fotografijama</summary>
+          <div><ul class="vis-list" data-visible></ul></div>
+        </details>
+        <details class="acc">
+          <summary>Materijal i održavanje</summary>
+          <div><p style="margin:0">Podatke o sastavu materijala i održavanju brend još nije objavio. Dobićete ih u odgovoru na upit ili u butiku.</p></div>
+        </details>
+        <details class="acc">
+          <summary>Kupovina i proba</summary>
+          <div>
+            <p style="margin:0">Haljinu možete pogledati i probati u butiku — Kalenićeva 6, Beograd. Dolazak se ne zakazuje.</p>
+            <p style="margin:0">Radno vreme: ponedeljak – petak 13 – 19 h, subota 11 – 17 h.</p>
+            <p style="margin:0">Za pitanja o dostupnosti pošaljite upit ili poruku na Instagramu.</p>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>O 3D prikazu</summary>
+          <div><p style="margin:0">3D model je približan prototip napravljen na osnovu fotografija — nije tačna digitalna replika. Pre odluke pogledajte fotografije. Boje označene kao „pregled“ nisu potvrđeni proizvodi.</p></div>
+        </details>
+      </div>
+    </aside>
+  </div>
+
+  <section class="related" aria-labelledby="rel-title">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap">
+      <h2 class="h-m" id="rel-title">Isti kroj, druge nijanse</h2>
+      <a class="link" href="kolekcija.html">Cela kolekcija <i>→</i></a>
+    </div>
+    <div class="related__row" data-related></div>
+  </section>
+</main>
+
+<footer class="foot" data-header="dark">
+  <p class="foot__mark" aria-hidden="true">ZOE BY AZ</p>
+  <div class="foot__grid">
+    <div><h3>Kolekcija</h3><ul><li><a href="kolekcija.html">Sve haljine</a></li><li><a href="index.html#lookovi">Izdvojeni lookovi</a></li><li><a href="index.html#lookbook">Lookbook</a></li></ul></div>
+    <div><h3>Atelje</h3><ul><li><a href="index.html#atelje">3D atelje</a></li><li><a href="#upit" data-inquire>Pošalji upit</a></li></ul></div>
+    <div><h3>Butik</h3><ul><li>Kalenićeva 6, Beograd</li><li>Pon – pet 13 – 19 h</li><li>Sub 11 – 17 h</li></ul></div>
+    <div><h3>Pratite</h3><ul><li><a href="https://www.instagram.com/zoebyaz/" target="_blank" rel="noopener">Instagram @zoebyaz ↗</a></li></ul></div>
+  </div>
+  <div class="foot__base"><span>© <span data-year>2026</span> ZOE BY AZ</span><span>3D prikazi su približni prototipovi izrađeni na osnovu fotografija.</span></div>
+</footer>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script type="module" src="js/product.js"></script>
+</body>
+</html>
